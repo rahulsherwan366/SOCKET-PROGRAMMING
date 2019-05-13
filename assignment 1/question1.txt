@@ -1,0 +1,29 @@
+Brief note on the following structures commonly used in networking :
+
+1.)   struct in_addr { u_long s_addr ; }
+      This is a user defined structure which is used to populate IPA of the associated 
+      socket address.As we can see over here It contains an unsigned long type data member 
+      named s_addr. It stores 32−bits netID or hostID in NBO (4 bytes).
+
+2.)   struct sockaddr_in {
+                    short sin_family ; 
+                    u_short sin_port ;
+                    struct in_addr sin_addr ; 
+                    char sin_zero [ 8 ] ;
+                    }  
+    sockaddr_in stands for socket address for internet.
+    Above is a very famous structure in c which is deals with internet addresses. Its object
+    are generally known as a socket address of struct sockaddr_in type.
+         It contains four data members which sin_family, sin_port, sin_addr and sin_zero as 
+    we con notice above. Now, sin_family takes the type of protocol socket of sockaddr_in wants
+    to follow (i.e, generally AF_INET for IPv4 or AF_INET6 for IPv6).
+         Next one is sin_port which is of unsigned short type generally takes 2 byte port number.
+    There are port number which are basically important to know which program in a perticular IPA 
+    has called or responded . So in specifing socket address the sin_port part is a must data member 
+    which needs to be populated .
+        Following sin_port is sin_addr which is of in_addr type which is explained above. This data 
+    member populates the IPA part of socket address which is required to find the location of the
+    location of the machine on the network.
+        In the end comes, sin_zero which is basically a non-used data member of character string type.
+    It is required just to add padding of 8 bytes which is really important if we want to type cast sockaddr_in
+    to generic socket address . 
